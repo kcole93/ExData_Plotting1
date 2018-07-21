@@ -6,7 +6,7 @@ rawData$Date <- as.Date(rawData$Date, format="%d/%m/%Y")
 DateTime <- strptime(paste(rawData$Date, rawData$Time), format="%Y-%m-%d %H:%M:%S")
 rawData$DateTime <- as.POSIXct(DateTime)
 
-ourData <- rawData  %>% select(Date:DateTime) %>% filter(Date > "2007-01-31" & Date < "2007-02-03")
+ourData <- rawData  %>% select(Date:DateTime) %>% filter(Date == "2007-02-01" | Date == "2007-02-02")
 rm("rawData")
 ourData$Global_active_power <- as.numeric(as.character(ourData$Global_active_power))
 

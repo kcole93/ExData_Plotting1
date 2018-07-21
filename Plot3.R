@@ -5,7 +5,7 @@ rawData$Date <- as.Date(rawData$Date, format="%d/%m/%Y")
 DateTime <- strptime(paste(rawData$Date, rawData$Time), format="%Y-%m-%d %H:%M:%S")
 rawData$DateTime <- as.POSIXct(DateTime)
 
-ourData <- rawData  %>% select(Date:DateTime) %>% filter(Date > "2007-01-31" & Date < "2007-02-03")
+ourData <- rawData  %>% select(Date:DateTime) %>% filter(Date == "2007-02-01" | Date == "2007-02-02")
 rm("rawData")
 ourData$Sub_metering_1 <- as.numeric(as.character(ourData$Sub_metering_1))
 ourData$Sub_metering_2 <- as.numeric(as.character(ourData$Sub_metering_2))
@@ -16,7 +16,7 @@ ourData$Sub_metering_3 <- as.numeric(as.character(ourData$Sub_metering_3))
 
 png(file="plot3.png",width=480,height=480)
 with(ourData, {
-  plot(Sub_metering_1~DateTime, type = "l", ylab = "Energy Sub Metering", xlab = "")
+  plot(Sub_metering_1~DateTime, type = "l", ylab = "Energy sub metering", xlab = "")
   lines(Sub_metering_2~DateTime, col = "red")
   lines(Sub_metering_3~DateTime, col = "blue")
 })
